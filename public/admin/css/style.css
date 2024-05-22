@@ -1,0 +1,125 @@
+.header{
+  background-color: black;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header .inner-logo a{
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.body .sidebar{
+  width: 150px;
+  background-color: gray;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 60px;
+  color: #fff;
+}
+
+.body .main{
+  position: relative;
+  left: 150px;
+  margin: 15px;
+  width: calc(100vh - 150px);
+}
+
+.sidebar .inner-menu ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .inner-menu ul li a{
+  color:#fff;
+  padding: 6px 10px;
+  display: block;
+  border-bottom: 1px solid black;
+
+}
+
+.table{
+  width: 150%;
+}
+.table th.id-col {
+  width: 5%;
+}
+
+.table th.thumbnail-col {
+  width: 15%;
+}
+
+.table th.title-col {
+  width: 20%;
+}
+
+.table th.price-col {
+  width: 10%;
+}
+
+.table th.status-col {
+  width: 10%;
+}
+
+.table th.action-col {
+  width: 35%;
+}
+
+.table th.checkbox-col {
+  width: 5%;
+}
+
+.btn{
+  margin-right: 5px;
+}
+
+[show-alert]{
+  position: fixed;
+  top:70px;
+  right: 15px;
+  z-index: 999;
+}
+
+[show-alert].alert-hidden{
+  animation-name: alert-hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes alert-hidden{
+  from{
+    right: 15px;
+  }
+  to{
+    right: -100%;
+    display: none;
+  }
+}
+
+[show-alert] [close-alert] {
+  background-color: #fff;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+[upload-preview-image]{
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+[upload-preview-image][src=""]{
+ display: none;
+}

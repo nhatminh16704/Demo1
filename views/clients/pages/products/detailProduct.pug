@@ -1,0 +1,24 @@
+extends ../../layouts/default
+
+block main
+  if product
+    .container  
+      .row 
+        .col-12
+          h1 #{product.title} 
+          if product.price 
+            div(class="mb-4") Price: <b> #{product.price} </b>
+          if product.discountPercentage 
+            div(class="mb-4") Discount: <b> #{product.discountPercentage}%</b>
+          if product.stock 
+            div(class="mb-4") Stock: <b> #{product.stock} </b>
+          if product.thumbnail 
+            div(class="mb-4")
+              img(src=product.thumbnail, style="width:100px; height:auto")        
+          if product.position 
+            div(class="mb-4") Position: <b> #{product.position} </b>
+          if product.description 
+            div(class="mb-4") #{product.description} 
+  else 
+    .container  
+      h2 This product is inactive

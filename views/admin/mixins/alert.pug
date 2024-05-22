@@ -1,0 +1,17 @@
+mixin alertSuccess(time)
+  - if (messages.info)
+    .message.info
+      div(
+        class="alert alert-success"
+        duration=time
+        show-alert
+      ) #{messages.info} <span close-alert>x</span>
+
+mixin alertDanger(time)
+  - if (messages.fail)
+    .message.info
+      div(
+        class="alert alert-danger"
+        duration=time
+        show-alert
+      ) #{messages.fail} <span close-alert>x</span>
