@@ -3,8 +3,10 @@ const router = express.Router();
 const productController = require("../../controllers/admin/product.controller");
 const productValidate = require("../../validates/admin/product.validate");
 const multer  = require('multer');
-const storage = require('../../helpers/storageMulter.js');
-const upload = multer({ storage: storage() });
+const fileupload = multer();
+const uploadCloud = require("../../middlewares/uploadCloud.middleware");
+//Instead of being written to a local directory, the uploaded files now reside in memory temporarily as a buffer.
+
 
 
 router.get("/product", productController.product)
@@ -14,14 +16,16 @@ router.delete("/product/delete/:id", productController.deleteItem)
 router.get("/product/create", productController.createItem)
 router.post(
   "/product/create",
-  upload.single('thumbnail'),
+  fileupload.single('thumbnail'),
+  // This middleware will extract the file from the request, process it, and save information about the file into req.file.
+  uploadCloud.upload,
   productValidate.createProduct,
   productController.createProduct
 )
 router.get("/product/edit/:id", productController.editItem)
 router.patch(
   "/product/edit/:id",
-  upload.single('thumbnail'),
+  fileupload.single('thumbnail'),
   productValidate.createProduct,
   productController.editProduct
 )

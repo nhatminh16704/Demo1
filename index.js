@@ -10,6 +10,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
+
 connectdb();
 
 app.use(cookieParser('keyboard cat'));
@@ -36,4 +37,5 @@ routeAdmin(app);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
   // console.log(__dirname);
+
 }); 
