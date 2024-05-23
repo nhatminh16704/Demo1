@@ -25,11 +25,11 @@ block main
     div(class="form-group")
       label(for="desc") Description 
       textarea(
-        class="form-control"
+        class="form-control textarea-mce"
         id="desc"
         name="description"
         required 
-      ) #{product.description}
+      ) !{product.description}
     div(class="form-group")
       label(for="price") Price 
       input(

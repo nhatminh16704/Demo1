@@ -1,13 +1,13 @@
 extend ../layouts/default
-include ../mixins/alert
+include ../mixins/select-tree
+
+
 
 block main
-  +alertDanger(5000)
 
-  h1 Add new product 
+  h1 Create Category
   form(
-    action=`${prefixAdmin}/product/create`
-    id="form-create-product"
+    action=`${prefixAdmin}/category/create`
     method="POST"
     enctype="multipart/form-data"
   )
@@ -16,10 +16,21 @@ block main
       input(
         type="text"
         class="form-control"
-        id="title"
-        name="title"
-         
+        id="parent_id"
+        name="title"        
       )
+    div(class="form-group")
+      label(for="parent_id") Parent Category 
+      select(
+        class="form-control"
+        id="parent_id"
+        name="parent_id"        
+      )
+        option(value="") --Select parent category--
+        if records
+          +select-tree(records)
+          
+
     div(class="form-group")
       label(for="desc") Description 
       textarea(
@@ -27,33 +38,7 @@ block main
         id="desc"
         name="description"
       )
-    div(class="form-group")
-      label(for="price") Price 
-      input(
-        type="number"
-        class="form-control"
-        id="price"
-        name="price"
-        required 
-      )
-    div(class="form-group")
-      label(for="discount") Discount (%) 
-      input(
-        type="number"
-        class="form-control"
-        id="discount"
-        name="discountPercentage"
-        required 
-      )
-    div(class="form-group")
-      label(for="stock") Stock 
-      input(
-        type="number"
-        class="form-control"
-        id="stock"
-        name="stock"
-        required 
-      )
+    
     div(class="form-group" upload-image) 
       label(for="thumbnail") Thumbnail 
       input(
@@ -107,5 +92,3 @@ block main
         type="submit"
         class="btn btn-primary"
       ) Create
-    
-    

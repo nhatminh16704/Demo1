@@ -31,12 +31,21 @@ module.exports.product = async (req, res) => {
     find.title = objS.regex;
   }
 
-  const products = await Product.find(find).limit(objPag.limit).skip(objPag.skip).sort({position: "desc"});
+  const sort = {};
+  if(req.query.sortKey && req.query.sortValue){
+    console.log(req.query);
+    sort[req.query.sortKey] = req.query.sortValue;
+  }else{
+    sort.position = "desc";
+  }
+
+  const products = await Product.find(find).limit(objPag.limit).skip(objPag.skip).sort(sort);
+
   res.render("admin/pages/product", {
     products: products,
     filterStatus: fs,
     keyword: objS.keyword,
-    limitPage: objPag.limitPage,
+    limitPage: objPag.limit,
     currentPage: objPag.current
   })
 };

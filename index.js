@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config(); //import lib and load env var
+var path = require('path');
 const app = express();
 const port = process.env.PORT;
 const route = require('./routes/clients/index.route');
@@ -10,6 +11,9 @@ const flash = require('express-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
+
+
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 connectdb();
 
@@ -36,6 +40,6 @@ routeAdmin(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-  // console.log(__dirname);
+
 
 }); 

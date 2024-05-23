@@ -1,0 +1,39 @@
+mixin table-tree(items, level = 0)
+  each item in items
+    -var prefix = '--'.repeat(level)   
+      tbody 
+        tr 
+          td  
+            input(type="checkbox" name="id" value=item.id)
+          td #{item.index}
+          td 
+            img(src=item.thumbnail width= "100px" height="auto")
+          td #{prefix}#{item.title}
+          td
+            input(
+              type="number"
+              name="position"
+              min=1
+              style="width: 60px"
+              value=item.position
+            )
+          td          
+            if item.status == "inactive"
+              a(
+                href="#" 
+                class="badge badge-danger"
+                button-change-status="active"
+                id=item.id) Inactive
+            else
+              a(
+                href="#" 
+                class="badge badge-success"
+                button-change-status="inactive"
+                id=item.id) Active
+          td
+            a(class="btn btn-secondary btn-sm" href=`${prefixAdmin}/category/detail/${item.id}` detail-category) Detail
+            a(class="btn btn-warning btn-sm" href=`${prefixAdmin}/category/edit/${item.id}` edit-category) Edit
+            button(class="btn btn-danger btn-sm" button-delete=item.id) Delete
+    
+    if item.children && item.children.length
+      +table-tree(item.children, level + 1) 

@@ -26,6 +26,7 @@ router.get("/product/edit/:id", productController.editItem)
 router.patch(
   "/product/edit/:id",
   fileupload.single('thumbnail'),
+  uploadCloud.upload,
   productValidate.createProduct,
   productController.editProduct
 )
