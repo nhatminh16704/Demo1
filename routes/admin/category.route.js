@@ -17,5 +17,15 @@ router.post(
   uploadCloud.upload,
   categoryController.createPost
 )
+router.get("/category/detail/:id", categoryController.detail)
+router.get("/category/edit/:id", categoryController.edit)
+router.patch(
+  "/category/edit/:id",
+  fileupload.single('thumbnail'),
+  // This middleware will extract the file from the request, process it, and save information about the file into req.file.
+  uploadCloud.upload,
+  categoryController.editPost
+)
+
 
 module.exports = router;

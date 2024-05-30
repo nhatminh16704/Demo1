@@ -1,0 +1,29 @@
+extend ../layouts/default
+include ../mixins/alert
+
+block main
+ 
+  h1 #{category.title} 
+  if category.price 
+    div(class="mb-4") Price: <b> #{category.price} </b>
+  if category.discountPercentage 
+    div(class="mb-4") Discount: <b> #{category.discountPercentage}%</b>
+  if category.stock 
+    div(class="mb-4") Stock: <b> #{category.stock} </b>
+  if category.thumbnail 
+    div(class="mb-4")
+      img(src=category.thumbnail, style="width:100px; height:auto")
+  if category.status 
+    div(class="mb-4")
+      span Status:
+      if category.status == "active"
+        span(class="badge badge-success") Active
+      else
+        span(class="badge badge-danger") Inactive
+  if category.position 
+    div(class="mb-4") Position: <b> #{category.position} </b>
+  if category.description 
+    div(class="mb-4") !{category.description} 
+    
+
+    

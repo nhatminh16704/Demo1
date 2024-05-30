@@ -1,23 +1,30 @@
 extend ../layouts/default
+include ../mixins/alert
 include ../mixins/select-tree
 
 
-
 block main
+  +alertDanger(5000)
+  +alertSuccess(5000)
 
-  h1 Create Category
+  h1 Edit category 
   form(
-    action=`${prefixAdmin}/category/create`
+    action=`${prefixAdmin}/category/edit/${category.id}?_method=PATCH`
+    id="form-create-category"
     method="POST"
+    enctype="multipart/form-data"
   )
     div(class="form-group")
       label(for="title") Title 
       input(
         type="text"
         class="form-control"
-        id="parent_id"
-        name="title"        
+        id="title"
+        name="title"
+        value=category.title
+         
       )
+
     div(class="form-group")
       label(for="parent_id") Parent Category 
       select(
@@ -27,8 +34,8 @@ block main
       )
         option(value="") --Select parent category--
         if records
-          +select-tree(records)
-          
+          +select-tree(records, 0, category.parent_id)
+
 
     div(class="form-group")
       label(for="desc") Description 
@@ -36,7 +43,7 @@ block main
         class="form-control textarea-mce"
         id="desc"
         name="description"
-      )
+      ) #{category.description}
     
     div(class="form-group" upload-image) 
       label(for="thumbnail") Thumbnail 
@@ -48,7 +55,7 @@ block main
         accept="image/*"
         upload-image-input
       )
-      img(src="" alt="lol" upload-preview-image)
+      img(src=category.thumbnail alt="lol" upload-preview-image)
     
     div(class="form-group")
       label(for="pos") Position 
@@ -59,6 +66,7 @@ block main
         name="position"
         placeholder="Auto increment"
         min="1"
+        value= category.position
             
       )
     
@@ -70,7 +78,7 @@ block main
         id="statusActive"
         name="status"
         value="active"
-        checked
+        checked= (category.status == "active" ? true : false)
         required 
       )
       label(for="statusActive") Active
@@ -82,6 +90,7 @@ block main
         id="statusInactive"
         name="status"
         value="inactive"
+        checked= (category.status == "active" ? false : true)
         required 
       )
       label(for="statusInactive") Inactive
@@ -90,4 +99,6 @@ block main
       button(
         type="submit"
         class="btn btn-primary"
-      ) Create
+      ) Update
+    
+    

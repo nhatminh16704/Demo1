@@ -1,0 +1,39 @@
+extend ../../layouts/default
+include ../../mixins/alert
+
+block main
+
+  +alertDanger(5000)
+  +alertSuccess(5000)
+  
+  h1 Edit Permission Group
+
+  form(
+      action=`${prefixAdmin}/role/edit/${data.id}?_method=PATCH`
+      method="POST"
+    )
+      div(class="form-group")
+        label(for="title") Title 
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          value=data.title     
+        )
+
+      div(class="form-group")
+        label(for="des") Description
+        input(
+          type="text"
+          class="form-control"
+          id="des"
+          name="description"  
+          value=data.description
+        )
+
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-primary"
+        ) Update

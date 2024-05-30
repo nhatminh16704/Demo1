@@ -1,5 +1,7 @@
 extend ../layouts/default
 include ../mixins/alert
+include ../mixins/select-tree
+
 
 block main
   +alertDanger(5000)
@@ -22,14 +24,25 @@ block main
         value=product.title
          
       )
+
+    div(class="form-group")
+      label(for="product_category_id") Category 
+      select(
+        class="form-control"
+        id="product_category_id"
+        name="product_category_id"        
+      )
+        option(value="") --Select category--
+        if category
+          +select-tree(category, 0, product.product_category_id)
+
     div(class="form-group")
       label(for="desc") Description 
       textarea(
         class="form-control textarea-mce"
         id="desc"
         name="description"
-        required 
-      ) !{product.description}
+      ) #{product.description}
     div(class="form-group")
       label(for="price") Price 
       input(

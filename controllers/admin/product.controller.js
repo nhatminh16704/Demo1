@@ -3,6 +3,10 @@ const Product = require("../../models/product.model");
 const filter_Status = require("../../helpers/filterStatus")
 const searching =  require("../../helpers/searching")
 const pagination_helper =  require("../../helpers/pagination")
+const createTreeHelper = require("../../helpers/createTree");
+const Category = require("../../models/category.model");
+const { category } = require("./category.controller");
+
 
 module.exports.product = async (req, res) => {
   
@@ -101,7 +105,9 @@ module.exports.changeMulti = async (req, res) => {
 }
 
 module.exports.createItem = async(req, res) => {
-  res.render("admin/pages/createProduct");
+  const records = await Category.find({deleted: false});
+  const newRecords = createTreeHelper.create(records, "");
+  res.render("admin/pages/createProduct", {category: newRecords});
 
 }
 
@@ -132,9 +138,11 @@ module.exports.editItem = async(req, res) => {
     _id: req.params.id
   }
 
+  const records = await Category.find({deleted: false});
+  const newRecords = createTreeHelper.create(records, "");
   try {
     const item = await Product.findOne(find);
-    res.render("admin/pages/editProduct", {product: item});
+    res.render("admin/pages/editProduct", {product: item, category: newRecords});
 
   } catch (error) {
     req.flash('fail', 'An error occurred !!');
@@ -148,9 +156,6 @@ module.exports.editProduct = async(req, res) => {
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
   req.body.position = parseInt(req.body.position);
-  if(req.file){
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
 
   try {
     await Product.updateOne({_id: id}, req.body);
