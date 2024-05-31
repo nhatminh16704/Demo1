@@ -26,6 +26,7 @@ router.patch(
   uploadCloud.upload,
   categoryController.editPost
 )
+router.delete("/category/delete/:id", categoryController.delete)
 
 
 module.exports = router;

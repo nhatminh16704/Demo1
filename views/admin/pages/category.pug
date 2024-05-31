@@ -14,23 +14,7 @@ block main
             method="POST"
             form-change-multi 
           )
-
-            .d-flex.align-items-start
-              .form-group   
-                select(name="type" class="form-control")
-                  option(disabled selected) --Choose action--
-                  option(value="active") Active
-                  option(value="inactive") Inactive
-                  option(value="delete") Delete
-                  option(value="position") Change Position
-              .form-group 
-                input(
-                  type="text"
-                  name="ids"
-                  value=""
-                  class="form-control d-none"
-                )
-              button(type="submit" class="btn btn-primary") Apply     
+                          
         .col-4 
           a(href=`${prefixAdmin}/category/create` class="btn btn-outline-success") + Add New
   
@@ -50,3 +34,12 @@ block main
         th.action-col Action
     if records 
       +table-tree(records)
+
+  form(
+  action=""
+  method="POST"
+  id="form-delete-item"
+  path=`${prefixAdmin}/category/delete`
+  )
+
+  script(src="/admin/js/product.js")

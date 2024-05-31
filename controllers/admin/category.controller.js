@@ -106,3 +106,12 @@ module.exports.editPost = async(req, res) => {
 
 
 };
+
+//[DELETE] /admin/category/delete/:id
+module.exports.delete = async (req, res) => {
+  const id = req.params.id;
+
+  await Category.updateOne({_id: id}, {deleted: true});
+
+  res.redirect("back");
+}
