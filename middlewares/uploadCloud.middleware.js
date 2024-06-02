@@ -28,7 +28,8 @@ module.exports.upload = (req, res, next) => {
 
     async function upload(req) {
         let result = await streamUpload(req);
-        req.body.thumbnail = result.secure_url;
+        const originalName = req.file.fieldname; 
+        req.body[originalName] = result.secure_url;
         next();
     }
 

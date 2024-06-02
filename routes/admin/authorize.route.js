@@ -5,8 +5,8 @@ const authorizeController = require("../../controllers/admin/authorize.controlle
 
 
 
-router.get("/authorize", authorizeController.authorize)
-router.patch("/authorize/change", authorizeController.change)
+router.get("/", authorizeController.authorize)
+router.patch("/change", authorizeController.change)
 // router.get("/role/create", roleController.create)
 // router.post("/role/create", roleController.createPost)
 // router.get("/role/edit/:id", roleController.edit)

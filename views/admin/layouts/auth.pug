@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{pageTitle}
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    //-Link to Bootstrap CSS file
+    link(rel="stylesheet", href="/admin/css/style.css")
+    
+
+  body
+    .main 
+      block main
+      
+
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+    //- Liên kết đến file jQuery Slim từ CDN (được yêu cầu cho các plugin JavaScript của Bootstrap)
+    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js")
+    //- Liên kết đến file Popper.js từ CDN (được yêu cầu cho các dropdown và tooltips của Bootstrap)
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    //- Liên kết đến file JavaScript của Bootstrap từ CDN
+    script(src="/admin/js/scripts.js")

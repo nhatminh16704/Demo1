@@ -5,11 +5,11 @@ const roleController = require("../../controllers/admin/role.controller");
 
 
 
-router.get("/role", roleController.role)
-router.get("/role/create", roleController.create)
-router.post("/role/create", roleController.createPost)
-router.get("/role/edit/:id", roleController.edit)
-router.patch("/role/edit/:id", roleController.editPatch)
+router.get("/", roleController.role)
+router.get("/create", roleController.create)
+router.post("/create", roleController.createPost)
+router.get("/edit/:id", roleController.edit)
+router.patch("/edit/:id", roleController.editPatch)
 
 
 
