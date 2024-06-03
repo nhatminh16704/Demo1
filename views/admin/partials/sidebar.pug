@@ -3,14 +3,19 @@ siderbar.sidebar
     ul 
       li 
         a(href=`${prefixAdmin}/dashboard`) Dashboard 
-      li
-        a(href=`${prefixAdmin}/product`) Product 
-      li
-        a(href=`${prefixAdmin}/category`) Category
-      li
-        a(href=`${prefixAdmin}/role`) Permission
-      li
-        a(href=`${prefixAdmin}/authorize`) Authorization
-      li
-        a(href=`${prefixAdmin}/account`) Account
+      if(user_role.permissions.includes('products-view'))      
+        li
+          a(href=`${prefixAdmin}/product`) Product 
+      if(user_role.permissions.includes('products-category_view'))
+        li
+          a(href=`${prefixAdmin}/category`) Category
+      if(user_role.permissions.includes('permissions-view'))      
+        li
+          a(href=`${prefixAdmin}/role`) Permission
+      if(user_role.permissions.includes('auth-view'))           
+        li
+          a(href=`${prefixAdmin}/authorize`) Authorization
+      if(user_role.permissions.includes('acc-view'))           
+        li
+          a(href=`${prefixAdmin}/account`) Account
 

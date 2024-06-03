@@ -10,12 +10,17 @@ html(lang="en")
     
 
   body
-    include ../partials/header
+    if user_role.permissions.length > 0
+      include ../partials/header
 
-    .body
-      include ../partials/sidebar
-      .main 
-        block main 
+      .body
+        include ../partials/sidebar
+        .main 
+          block main 
+    else
+      include ../partials/header
+      div(class="text-center mt-5")
+        h1 You dont have any permissions
       
 
     script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")

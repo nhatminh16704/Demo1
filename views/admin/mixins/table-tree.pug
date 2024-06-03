@@ -33,7 +33,8 @@ mixin table-tree(items, level = 0)
           td
             a(class="btn btn-secondary btn-sm" href=`${prefixAdmin}/category/detail/${item.id}` detail-category) Detail
             a(class="btn btn-warning btn-sm" href=`${prefixAdmin}/category/edit/${item.id}` edit-category) Edit
-            button(class="btn btn-danger btn-sm" button-delete=item.id) Delete
+            if user_role.permissions.includes("products-category_delete")          
+              button(class="btn btn-danger btn-sm" button-delete=item.id) Delete
 
     
     if item.children && item.children.length

@@ -1,32 +1,37 @@
 extend ../../layouts/default
 
 block main
-  h1 Create Permission Group
 
-  form(
-      action=`${prefixAdmin}/role/create`
-      method="POST"
-    )
-      div(class="form-group")
-        label(for="title") Title 
-        input(
-          type="text"
-          class="form-control"
-          id="title"
-          name="title"       
-        )
+  if user_role.permissions.includes("permissions-create")
 
-      div(class="form-group")
-        label(for="des") Description
-        input(
-          type="text"
-          class="form-control"
-          id="des"
-          name="description"  
-        )
+    h1 Create Permission Group
 
-      div(class="form-group")
-        button(
-          type="submit"
-          class="btn btn-primary"
-        ) Create
+    form(
+        action=`${prefixAdmin}/role/create`
+        method="POST"
+      )
+        div(class="form-group")
+          label(for="title") Title 
+          input(
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"       
+          )
+
+        div(class="form-group")
+          label(for="des") Description
+          input(
+            type="text"
+            class="form-control"
+            id="des"
+            name="description"  
+          )
+
+        div(class="form-group")
+          button(
+            type="submit"
+            class="btn btn-primary"
+          ) 
+  else  
+    h1 You dont have permissions to access        

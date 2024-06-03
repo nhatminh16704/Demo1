@@ -3,43 +3,47 @@ include ../mixins/table-tree
 
 
 block main
-  h1 Category
-  .card.mt-3
-    .card-header List
-    .card-body 
-      .row
-        .col-8 
-          form(
-            action=`${prefixAdmin}/product/change-multi?_method=PATCH`
-            method="POST"
-            form-change-multi 
-          )
-                          
-        .col-4 
-          a(href=`${prefixAdmin}/category/create` class="btn btn-outline-success") + Add New
-  
-  table(class="table table-hover table-lg" checkbox-multi)
-    thead 
-      tr  
-        th.checkbox
-          input(
-            type="checkbox"
-            name="checkall"
-          )
-        th.id-col ID
-        th.thumbnail-col Thumnail
-        th.title-col Title
-        th.position-col Positon
-        th.status-col Status
-        th.action-col Action
-    if records 
-      +table-tree(records)
+  if user_role.permissions.includes("products-category_view")
+    h1 Category
+    .card.mt-3
+      .card-header List
+      .card-body 
+        .row
+          .col-8 
+            form(
+              action=`${prefixAdmin}/product/change-multi?_method=PATCH`
+              method="POST"
+              form-change-multi 
+            )
+                            
+          .col-4 
+            a(href=`${prefixAdmin}/category/create` class="btn btn-outline-success") + Add New
+    
+    table(class="table table-hover table-lg" checkbox-multi)
+      thead 
+        tr  
+          th.checkbox
+            input(
+              type="checkbox"
+              name="checkall"
+            )
+          th.id-col ID
+          th.thumbnail-col Thumnail
+          th.title-col Title
+          th.position-col Positon
+          th.status-col Status
+          th.action-col Action
+      if records 
+        +table-tree(records)
 
-  form(
-  action=""
-  method="POST"
-  id="form-delete-item"
-  path=`${prefixAdmin}/category/delete`
-  )
+    form(
+    action=""
+    method="POST"
+    id="form-delete-item"
+    path=`${prefixAdmin}/category/delete`
+    )
+  else 
+    h1 You dont have permissions to access
+
 
   script(src="/admin/js/product.js")
